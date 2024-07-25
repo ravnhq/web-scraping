@@ -1,0 +1,61 @@
+{
+  "name": "web-scraping",
+  "version": "1.0.0",
+  "description": "Web scraping",
+  "main": "index.js",
+  "scripts": {
+    "dev": "dotenv -e .env -- ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:write": "yarn format --write",
+    "format:check": "yarn format --check",
+    "test": "dotenv -e .env.test -- jest --runInBand",
+    "lint": "tsc --project tsconfig.json --noEmit && eslint \"{src,apps,libs,test}/**/*.ts\" --color --max-warnings=0"
+  },
+  "author": "Diego Cahuayo Salazar",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv-cli": "^7.4.2",
+    "express": "^4.19.2",
+    "express-async-handler": "1.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@types/express": "^4.17.21",
+    "@types/node": "20.14.12",
+    "@typescript-eslint/eslint-plugin": "7.17.0",
+    "@typescript-eslint/parser": "7.17.0",
+    "nodemon": "3.1.4",
+    "ts-jest": "29.2.3",
+    "ts-node": "10.9.2",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.5.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      ".+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.controller.ts",
+      "**/*.service.ts",
+      "**/*.resolver.ts",
+      "**/*.factory.ts",
+      "**/utils/*.ts",
+      "**/events/*.ts",
+      "**/*.validator.ts"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
+    "testTimeout": 15000
+  }
+}
